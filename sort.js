@@ -1,22 +1,20 @@
 module.exports = {
-  selectionSort: (array) => {
-      const n = array.length;
+  selectionSort: (array, direction = 0) => {
+    const { length } = array
 
-      // One by one move boundary of unsorted subarray
-      for (let i = 0; i < n - 1; i++)
-      {
-          // Find the minimum element in unsorted array
-          let min_idx = i;
-          for (let j = i+1; j < n; j++)
-              if (array[j] < array[min_idx])
-                  min_idx = j;
-
-          // Swap the found minimum element with the first
-          // element
-          const temp = array[min_idx];
-          array[min_idx] = array[i];
-          array[i] = temp;
+    for (let i = 0; i < length - 1; i++) {
+      let extrema = i
+      for (let j = i + 1; j < length; j++) {
+        // If ascending, check for min. If descending check for max
+        if (
+          direction ? array[j] > array[extrema] : array[j] < array[extrema]
+        ) { extrema = j }
       }
-      return array
+
+      const temp = array[extrema]
+      array[extrema] = array[i]
+      array[i] = temp
+    }
+    return array
   }
 }
