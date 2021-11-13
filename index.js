@@ -1,4 +1,5 @@
-const selectionSort = require('./sort').selectionSort
-const yo = [3, 1, 5, 4, 9]
+const sort = require('./sort')
 
-console.log(selectionSort(yo))
+module.exports = {
+  sort
+}
